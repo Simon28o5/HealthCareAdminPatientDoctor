@@ -162,6 +162,7 @@ public class PatientServiceImpl implements PatientService {
 //        if (patient.getReviews() == null) {
 //            patient.setReviews(new ArrayList<>());
 //        }
+
 //        patient.getReviews().add(review);
 //        // Saving the patient will also save the review due to cascade
 //        patientRepository.save(patient);

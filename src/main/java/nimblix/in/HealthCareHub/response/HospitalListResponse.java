@@ -13,6 +13,6 @@ public class HospitalListResponse {
 
     private String status;
     private String message;
-    private List<HospitalSpecializationResponse> hospitals;
+    private List<HospitalSpecializationResponse> data;
 
 }
