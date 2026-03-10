@@ -30,15 +30,15 @@ public class Prescription {
     @Column(name = "Diagnosis")
     private String diagnosis;
 
-//    @ManyToOne
+    @ManyToOne
     @JoinColumn(name = "Patient_id")
-    private Long patient_id;
+    private Patient patient;
 
-//    @ManyToOne
+    @ManyToOne
     @JoinColumn(name = "Doctor_id")
-    private Long doctor_id;
+    private Doctor doctor;
 
-    @OneToMany(mappedBy = "prescription", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "prescriptionId", cascade = CascadeType.ALL)
     private List<PrescriptionMedicines> medicines;
 
     @PrePersist

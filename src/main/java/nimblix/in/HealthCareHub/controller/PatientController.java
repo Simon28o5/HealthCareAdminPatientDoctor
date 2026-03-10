@@ -56,12 +56,12 @@ public class PatientController {
     }
 
     @GetMapping("/get/prescriptions/{id}")
-    public PrescriptionResponse<Prescription> getPrescription(@PathVariable Long id){
+    public ResponseEntity<Map<String, Object>> getPrescription(@PathVariable Long id){
         return patientService.getPrescription(id);
     }
 
     @GetMapping("/get/prescriptionmedicine/{prescriptionId}")
-    public PrescriptionMedicineResponse<PrescriptionMedicines> getPrescriptionMedicine(@PathVariable Long prescriptionId){
+    public ResponseEntity<Map<String, Object>> getPrescriptionMedicine(@PathVariable Long prescriptionId){
         return patientService.getPrescriptionMedicines(prescriptionId);
     }
 

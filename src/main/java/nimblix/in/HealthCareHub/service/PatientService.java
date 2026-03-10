@@ -8,15 +8,20 @@ import nimblix.in.HealthCareHub.request.PatientRegistrationRequest;
 import nimblix.in.HealthCareHub.response.PatientRegistrationResponse;
 import nimblix.in.HealthCareHub.response.PrescriptionMedicineResponse;
 import nimblix.in.HealthCareHub.response.PrescriptionResponse;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public interface PatientService {
-    PrescriptionResponse<Prescription> getPrescription(Long id);
+
     PatientRegistrationResponse registerPatient(PatientRegistrationRequest request);
-    PrescriptionMedicineResponse<PrescriptionMedicines> getPrescriptionMedicines(Long prescription_id);
+//    Simon -------------------------
+    ResponseEntity<Map<String,Object>> getPrescription(Long id);
+    ResponseEntity<Map<String,Object>> getPrescriptionMedicines(Long prescription_id);
+//    ----------------------------------
     Patient savePatient(Patient patient);
     String softDeletePatient(Long id);
     Review addDoctorReview(Long patientId, Long doctorId, String comment, int rating);

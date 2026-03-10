@@ -23,5 +23,5 @@ public class PrescriptionMedicines {
 
     @ManyToOne
     @JoinColumn(name = "Prescription_id")
-    private Prescription prescription;
+    private Prescription prescriptionId;
 }
