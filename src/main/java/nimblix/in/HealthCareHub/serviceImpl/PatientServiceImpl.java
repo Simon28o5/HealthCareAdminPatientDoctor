@@ -6,6 +6,7 @@ import nimblix.in.HealthCareHub.constants.HealthCareConstants;
 import nimblix.in.HealthCareHub.model.*;
 import nimblix.in.HealthCareHub.repository.*;
 import nimblix.in.HealthCareHub.request.PatientRegistrationRequest;
+import nimblix.in.HealthCareHub.response.ApiResponse;
 import nimblix.in.HealthCareHub.response.PatientRegistrationResponse;
 import nimblix.in.HealthCareHub.response.PrescriptionMedicineResponse;
 import nimblix.in.HealthCareHub.response.PrescriptionResponse;
@@ -71,41 +72,41 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
-    public ResponseEntity<Map<String,Object>> getPrescription(Long id) {
+    public ApiResponse<Prescription> getPrescription(Long id) {
         Optional<Prescription> op = prescriptionRepository.findById(id);
 
         if (op.isPresent()) {
-            Map<String,Object> response =new HashMap<>();
             Prescription pr = op.get();
-            response.put(HealthCareConstants.STATUS,HealthCareConstants.STATUS_SUCCESS);
-            response.put(HealthCareConstants.MESSAGE,HealthCareConstants.FETCHED_SUCCESSFULY);
-            response.put(HealthCareConstants.DATA,pr);
-            return new ResponseEntity<>(response, HttpStatus.OK);
+            ApiResponse<Prescription> response =new ApiResponse<>();
+            response.setData(pr);
+            response.setStatus(HealthCareConstants.STATUS_SUCCESS);
+            response.setMessage(HealthCareConstants.FETCHED_SUCCESSFULY);
+            return response;
         } else {
-            Map<String,Object> error =new HashMap<>();
-            error.put(HealthCareConstants.STATUS,HealthCareConstants.STATUS_FAILURE);
-            error.put(HealthCareConstants.MESSAGE,HealthCareConstants.FETCH_FAILED);
-            error.put(HealthCareConstants.DATA,null);
-            return new ResponseEntity<>(error,HttpStatus.NOT_FOUND);
+            ApiResponse<Prescription> response =new ApiResponse<>();
+            response.setData(null);
+            response.setStatus(HealthCareConstants.STATUS_FAILURE);
+            response.setMessage(HealthCareConstants.FETCH_FAILED);
+            return response;
         }
     }
 
     @Override
-    public ResponseEntity<Map<String,Object>> getPrescriptionMedicines(Long prescription_id) {
+    public ApiResponse<PrescriptionMedicines> getPrescriptionMedicines(Long prescription_id) {
         List<PrescriptionMedicines> prescriptions = prescriptionMedicinesRepository.findByPrescriptionId_Id(prescription_id);
 
         if (!prescriptions.isEmpty()) {
-            Map<String,Object> response =new HashMap<>();
-            response.put(HealthCareConstants.STATUS,HealthCareConstants.STATUS_SUCCESS);
-            response.put(HealthCareConstants.MESSAGE,HealthCareConstants.FETCHED_SUCCESSFULY);
-            response.put(HealthCareConstants.DATA,prescriptions);
-            return new ResponseEntity<>(response,HttpStatus.OK);
+            ApiResponse<PrescriptionMedicines> response =new ApiResponse<>();
+            response.setData((PrescriptionMedicines) prescriptions);
+            response.setStatus(HealthCareConstants.STATUS_SUCCESS);
+            response.setMessage(HealthCareConstants.FETCHED_SUCCESSFULY);
+            return response;
         } else {
-            Map<String,Object> response =new HashMap<>();
-            response.put(HealthCareConstants.STATUS,HealthCareConstants.STATUS_FAILURE);
-            response.put(HealthCareConstants.MESSAGE,HealthCareConstants.FETCH_FAILED);
-            response.put(HealthCareConstants.DATA,null);
-            return new ResponseEntity<>(response,HttpStatus.NOT_FOUND);
+            ApiResponse<PrescriptionMedicines> response =new ApiResponse<>();
+            response.setData(null);
+            response.setStatus(HealthCareConstants.STATUS_FAILURE);
+            response.setMessage(HealthCareConstants.FETCH_FAILED);
+            return response;
         }
     }
 

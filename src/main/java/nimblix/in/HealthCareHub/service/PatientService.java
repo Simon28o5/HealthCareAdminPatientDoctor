@@ -5,6 +5,7 @@ import nimblix.in.HealthCareHub.model.Prescription;
 import nimblix.in.HealthCareHub.model.PrescriptionMedicines;
 import nimblix.in.HealthCareHub.model.Review;
 import nimblix.in.HealthCareHub.request.PatientRegistrationRequest;
+import nimblix.in.HealthCareHub.response.ApiResponse;
 import nimblix.in.HealthCareHub.response.PatientRegistrationResponse;
 import nimblix.in.HealthCareHub.response.PrescriptionMedicineResponse;
 import nimblix.in.HealthCareHub.response.PrescriptionResponse;
@@ -19,8 +20,8 @@ public interface PatientService {
 
     PatientRegistrationResponse registerPatient(PatientRegistrationRequest request);
 //    Simon -------------------------
-    ResponseEntity<Map<String,Object>> getPrescription(Long id);
-    ResponseEntity<Map<String,Object>> getPrescriptionMedicines(Long prescription_id);
+    ApiResponse<Prescription> getPrescription(Long id);
+    ApiResponse<PrescriptionMedicines> getPrescriptionMedicines(Long prescription_id);
 //    ----------------------------------
     Patient savePatient(Patient patient);
     String softDeletePatient(Long id);

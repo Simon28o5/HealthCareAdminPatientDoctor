@@ -7,10 +7,7 @@ import nimblix.in.HealthCareHub.model.PrescriptionMedicines;
 import nimblix.in.HealthCareHub.model.Review;
 import nimblix.in.HealthCareHub.request.AdmitPatientRequest;
 import nimblix.in.HealthCareHub.request.PatientRegistrationRequest;
-import nimblix.in.HealthCareHub.response.AdmitPatientResponse;
-import nimblix.in.HealthCareHub.response.LabResultResponse;
-import nimblix.in.HealthCareHub.response.PrescriptionMedicineResponse;
-import nimblix.in.HealthCareHub.response.PrescriptionResponse;
+import nimblix.in.HealthCareHub.response.*;
 import nimblix.in.HealthCareHub.service.AdmissionService;
 import nimblix.in.HealthCareHub.service.LabResultService;
 import nimblix.in.HealthCareHub.service.PatientService;
@@ -56,12 +53,12 @@ public class PatientController {
     }
 
     @GetMapping("/get/prescriptions/{id}")
-    public ResponseEntity<Map<String, Object>> getPrescription(@PathVariable Long id){
+    public ApiResponse<Prescription> getPrescription(@PathVariable Long id){
         return patientService.getPrescription(id);
     }
 
     @GetMapping("/get/prescriptionmedicine/{prescriptionId}")
-    public ResponseEntity<Map<String, Object>> getPrescriptionMedicine(@PathVariable Long prescriptionId){
+    public ApiResponse<PrescriptionMedicines> getPrescriptionMedicine(@PathVariable Long prescriptionId){
         return patientService.getPrescriptionMedicines(prescriptionId);
     }
 
